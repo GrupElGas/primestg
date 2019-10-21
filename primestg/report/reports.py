@@ -4,6 +4,7 @@ from primestg.report.base import (
     Concentrator, Measure, MeterWithConcentratorName
 )
 from primestg.message import MessageS
+import sys
 
 SUPPORTED_REPORTS = ['S02', 'S04', 'S05', 'S06', 'S09', 'S12', 'S13', 'S15',
                      'S17', 'S23', 'S24', 'S27']
@@ -1833,7 +1834,11 @@ class Report(object):
         :param value: a file object or a string with the XML or a MessageS \
             object
         """
-        if hasattr(value, 'read') or isinstance(value, str):
+        python_version = sys.version_info[0]
+
+        if (hasattr(value, 'read')
+                or ((python_version == 3 and isinstance(value, str))
+                    or (python_version == 2 and isinstance(value, basestring)))):
             message = MessageS(value)
         elif isinstance(value, MessageS):
             message = value
