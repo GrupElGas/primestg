@@ -6,8 +6,9 @@ from primestg.report.base import (
 from primestg.message import MessageS
 import sys
 
-SUPPORTED_REPORTS = ['S02', 'S04', 'S05', 'S06', 'S09', 'S12', 'S13', 'S15',
-                     'S17', 'S23', 'S24', 'S27']
+SUPPORTED_REPORTS = {
+    'S02', 'S04', 'S05', 'S06', 'S09', 'S12', 'S13', 'S15', 'S17'
+}
 
 
 def is_supported(report_code):
